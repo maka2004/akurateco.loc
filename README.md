@@ -1,0 +1,1 @@
+# akurateco.loc
