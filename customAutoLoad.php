@@ -39,7 +39,7 @@ function customAutoLoad() {
  * @return array
  * @meta recursive
  */
-function getFolderContent($path)
+function getFolderContent(string $path)
 {
     $files = scandir($path);
 

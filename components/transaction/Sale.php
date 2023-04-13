@@ -4,14 +4,15 @@ namespace app\component\transaction;
 
 use app\component\Curl;
 use app\component\Helper;
+use app\components\interfaces\GatewayInterface;
 use app\components\interfaces\TransactionHandlerInterface;
 
 class Sale implements TransactionHandlerInterface
 {
     use Curl;
 
-    private $gateway;
-    private $transaction;
+    private GatewayInterface $gateway;
+    private Transaction $transaction;
 
     public function init(array $params)
     {
@@ -41,7 +42,7 @@ class Sale implements TransactionHandlerInterface
                 // send request
                 $result = $this->send($this->gateway->getUrl(), json_encode($params), true);
 
-                // interpretate answer
+                // interpretation answer
                 if (Helper::isJson($result)) {
                     $result = json_decode($result);
                     $result = $this->gateway->getInnerParams($result);
@@ -56,17 +57,15 @@ class Sale implements TransactionHandlerInterface
 
                     // redirect if 3DS
                     TransactionBuilder::checkRedirect($result);
-
-                    // return
-                    return $this->transaction;
                 }
-
             } else {
                 print_r($request->errors);
             }
         } else {
             print_r($this->transaction->errors);
         }
+
+        return $this->transaction;
     }
 
 }

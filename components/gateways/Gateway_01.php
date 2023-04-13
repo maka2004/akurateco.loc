@@ -8,13 +8,13 @@ use app\components\Gateway;
 
 class Gateway_01 extends Gateway implements GatewayInterface
 {
-    private $url = 'http://akurateco.loc/cap/payment.php'; // payment gateway URL
-    private static $capClientPass = 'qwerty';
+    private static string $url = 'http://akurateco.loc/cap/payment.php'; // payment gateway URL
+    private static string $capClientPass = 'qwerty';
 
     /**
      * @return string[]
      */
-    function getParamsOut()
+    public function getParamsOut(): array
     {
         return [
             // request params
@@ -51,7 +51,7 @@ class Gateway_01 extends Gateway implements GatewayInterface
     /**
      * @return string[]
      */
-    function getParamsIn()
+    public function getParamsIn(): array
     {
         return [
             'action' => 'action',
@@ -68,12 +68,12 @@ class Gateway_01 extends Gateway implements GatewayInterface
         ];
     }
 
-    function getUrl()
+    public function getUrl(): string
     {
-        return $this->url;
+        return self::$url;
     }
 
-    function getRequest($transaction)
+    public function getRequest($transaction): Gateway_01_Request
     {
         $request = new Gateway_01_Request();
         foreach ($this->getParamsOut() as $innerFieldName => $outerFieldName) {
@@ -84,21 +84,26 @@ class Gateway_01 extends Gateway implements GatewayInterface
         return $request;
     }
 
-    public function generateSignature($transaction)
+    public function generateSignature($transaction): string
     {
-        return md5(strtoupper(strrev($transaction->email) . self::$capClientPass .
-            strrev(substr($transaction->card_number,0,6).substr($transaction->card_number,-4))));
+        return md5(
+            strtoupper(
+                strrev($transaction->email) . self::$capClientPass .
+                strrev(substr($transaction->card_number, 0, 6) . substr($transaction->card_number, -4))
+            )
+        );
     }
 
-    public function checkSignature($transaction, array $params)
+    public function checkSignature($transaction, array $params): bool
     {
         $checkSignature = md5(
-            strtoupper(strrev($transaction->email)
+            strtoupper(
+                strrev($transaction->email)
                 . self::$capClientPass
                 . $params['gateway_transaction_id']
                 . strrev(
-                    substr($transaction->card_number,0,6)
-                    . substr($transaction->card_number,-4)
+                    substr($transaction->card_number, 0, 6)
+                    . substr($transaction->card_number, -4)
                 )
             )
         );

@@ -8,13 +8,13 @@ use ErrorException;
 trait Curl
 {
     /**
-     * @param $url
-     * @param $data_json
+     * @param string $url
+     * @param string $data_json
      * @param bool $is_post
      * @return string
      * @throws ErrorException
      */
-    public function send($url, $data_json, $is_post = false)
+    public function send(string $url, string $data_json, bool $is_post = false): string
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

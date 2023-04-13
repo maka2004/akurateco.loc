@@ -1,6 +1,7 @@
 <?php
 namespace app\components;
 
+
 class Gateway
 {
     public function getInnerParams($outerParams)
@@ -20,7 +21,7 @@ class Gateway
      *
      * @return string[]
      */
-    public function getParamsIn()
+    public function getParamsIn(): array
     {
         return [];
     }

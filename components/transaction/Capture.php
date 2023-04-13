@@ -9,12 +9,12 @@ class Capture implements TransactionHandlerInterface
 {
     use Curl;
 
-    function init(array $params)
+    public function init(array $params)
     {
         // TODO: Implement init() method.
     }
 
-    function run()
+    public function run()
     {
         // TODO: Implement run() method.
     }

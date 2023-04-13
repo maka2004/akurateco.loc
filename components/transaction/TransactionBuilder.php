@@ -8,8 +8,8 @@ use app\component\transaction\Sale;
 
 class TransactionBuilder
 {
-    const SALE = 'SALE';
-    const CAPTURE = 'CAPTURE';
+    public const SALE = 'SALE';
+    public const CAPTURE = 'CAPTURE';
 
     /**
      * determine transaction type
@@ -17,7 +17,7 @@ class TransactionBuilder
      * @param array $params
      * @return \app\component\transaction\Capture|\app\component\transaction\Sale|null
      */
-    public static function getTransactionHandler(array $params)
+    public static function getTransactionHandler(array $params): \app\component\transaction\Capture|\app\component\transaction\Sale|null
     {
         $handler = null;
 
@@ -40,7 +40,7 @@ class TransactionBuilder
      * @param array $params
      * @return mixed|string|null
      */
-    public static function getGateway(array $params)
+    public static function getGateway(array $params): mixed
     {
         $gateway = null;
 

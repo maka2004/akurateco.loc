@@ -7,7 +7,10 @@ use app\components\Model;
 
 class Gateway_01_Request extends Model
 {
-    public function rules()
+    /**
+     * @return array[]
+     */
+    public function rules(): array
     {
         return [
             ['action', ['required', 'string', 'enum' => [Transaction::SCENARIO_SALE, Transaction::SCENARIO_CAPTURE, Transaction::SCENARIO_CREDITVOID]]],

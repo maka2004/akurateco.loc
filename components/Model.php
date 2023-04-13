@@ -6,9 +6,9 @@ use app\components\interfaces\ModelInterface;
 
 class Model implements ModelInterface
 {
-    private $types = ['int', 'float', 'string', 'bool'];
+    private array $types = ['int', 'float', 'string', 'bool'];
 
-    public $errors = [];
+    public array $errors = [];
 
     /**
      * Example:
@@ -19,7 +19,7 @@ class Model implements ModelInterface
      * ]
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }
@@ -34,7 +34,7 @@ class Model implements ModelInterface
         }
     }
 
-    public function validate()
+    public function validate(): bool
     {
         foreach ($this->rules() as $rule) {
             if (is_array($rule) && isset($rule[1])) {
@@ -115,7 +115,7 @@ class Model implements ModelInterface
     /**
      * @return array
      */
-    public function getPropertiesArray()
+    public function getPropertiesArray(): array
     {
         $params = [];
         foreach ($this->rules() as $field) {

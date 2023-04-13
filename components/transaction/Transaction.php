@@ -3,31 +3,30 @@
 namespace app\component\transaction;
 
 use app\components\Model;
-use app\models\Request;
 
 class Transaction extends Model
 {
-    const RESULT_SUCCESS = 'SUCCESS';
-    const RESULT_DECLINED = 'DECLINED';
-    const RESULT_REDIRECT = 'REDIRECT';
-    const RESULT_ACCEPTED = 'ACCEPTED';
-    const RESULT_ERROR = 'ERROR';
+    public const RESULT_SUCCESS = 'SUCCESS';
+    public const RESULT_DECLINED = 'DECLINED';
+    public const RESULT_REDIRECT = 'REDIRECT';
+    public const RESULT_ACCEPTED = 'ACCEPTED';
+    public const RESULT_ERROR = 'ERROR';
 
-    const STATUS_3DS = '3DS';
-    const STATUS_REDIRECT = 'REDIRECT';
-    const STATUS_PENDING = 'PENDING';
-    const STATUS_PREPARE = 'PREPARE';
-    const STATUS_SETTLED = 'SETTLED';
-    const STATUS_REVERSAL = 'REVERSAL';
-    const STATUS_REFUND = 'REFUND';
-    const STATUS_CHARGEBACK = 'CHARGEBACK';
-    const STATUS_DECLINED = 'DECLINED';
+    public const STATUS_3DS = '3DS';
+    public const STATUS_REDIRECT = 'REDIRECT';
+    public const STATUS_PENDING = 'PENDING';
+    public const STATUS_PREPARE = 'PREPARE';
+    public const STATUS_SETTLED = 'SETTLED';
+    public const STATUS_REVERSAL = 'REVERSAL';
+    public const STATUS_REFUND = 'REFUND';
+    public const STATUS_CHARGEBACK = 'CHARGEBACK';
+    public const STATUS_DECLINED = 'DECLINED';
 
-    const SCENARIO_SALE = 'SALE';
-    const SCENARIO_CAPTURE = 'CAPTURE';
-    const SCENARIO_CREDITVOID = 'CREDITVOID';
+    public const SCENARIO_SALE = 'SALE';
+    public const SCENARIO_CAPTURE = 'CAPTURE';
+    public const SCENARIO_CREDITVOID = 'CREDITVOID';
 
-    public function rules()
+    public function rules(): array
     {
         return [
             ['action', ['required', 'string', 'enum' => [self::SCENARIO_SALE, self::SCENARIO_CAPTURE, self::SCENARIO_CREDITVOID]]],

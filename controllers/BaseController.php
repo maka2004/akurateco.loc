@@ -2,7 +2,6 @@
 namespace app\controllers;
 
 use app\component\transaction\TransactionBuilder;
-use app\models\Request;
 
 class BaseController
 {
