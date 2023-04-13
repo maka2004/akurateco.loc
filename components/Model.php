@@ -8,10 +8,6 @@ class Model implements ModelInterface
 {
     private $types = ['int', 'float', 'string', 'bool'];
 
-    const SCENARIO_DEFAULT = 'default';
-
-    public $scenario = self::SCENARIO_DEFAULT;
-
     public $errors = [];
 
     /**
@@ -44,11 +40,6 @@ class Model implements ModelInterface
             if (is_array($rule) && isset($rule[1])) {
                 $fieldName = $rule[0];
                 $limits = $rule[1];
-                if (isset($rule[2])) {
-                    $scenarios = $rule[2];
-                } else {
-                    $scenarios = [self::SCENARIO_DEFAULT];
-                }
 
                 foreach ($limits as $key => $limit) {
                     if (is_numeric($key)) {

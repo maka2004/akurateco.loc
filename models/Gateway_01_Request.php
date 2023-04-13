@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\component\transaction\Transaction;
 use app\components\Model;
 
 class Gateway_01_Request extends Model
@@ -9,7 +10,7 @@ class Gateway_01_Request extends Model
     public function rules()
     {
         return [
-            ['action', ['required', 'string', 'enum' => [Request::SCENARIO_SALE, Request::SCENARIO_CAPTURE, Request::SCENARIO_CREDITVOID]]],
+            ['action', ['required', 'string', 'enum' => [Transaction::SCENARIO_SALE, Transaction::SCENARIO_CAPTURE, Transaction::SCENARIO_CREDITVOID]]],
             ['client_key', ['required', 'string', 'min' => 36, 'max' => 36]],
             ['channel_id', ['string', 'max' => 16]],
             ['order_id', ['required', 'string', 'max' => 255]],

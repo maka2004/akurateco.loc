@@ -23,10 +23,14 @@ class Transaction extends Model
     const STATUS_CHARGEBACK = 'CHARGEBACK';
     const STATUS_DECLINED = 'DECLINED';
 
+    const SCENARIO_SALE = 'SALE';
+    const SCENARIO_CAPTURE = 'CAPTURE';
+    const SCENARIO_CREDITVOID = 'CREDITVOID';
+
     public function rules()
     {
         return [
-            ['action', ['required', 'string', 'enum' => [Request::SCENARIO_SALE, Request::SCENARIO_CAPTURE, Request::SCENARIO_CREDITVOID]]],
+            ['action', ['required', 'string', 'enum' => [self::SCENARIO_SALE, self::SCENARIO_CAPTURE, self::SCENARIO_CREDITVOID]]],
             ['gateway', ['required', 'string', 'max' => 255]],
             ['client_key', ['required', 'string', 'min' => 36, 'max' => 36]],
             ['channel_id', ['string', 'max' => 16]],
